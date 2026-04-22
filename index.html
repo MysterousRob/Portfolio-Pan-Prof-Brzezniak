@@ -124,7 +124,7 @@
             font-weight: bold;
             border-bottom: 2px solid var(--accent-blue);
         }
-
+/*-----------------------------------------------------------------*/
         /*project showcase*/
         .projects-section {
             padding: 60px 50px;
@@ -178,7 +178,93 @@
             text-decoration: underline;
             color: var(--accent-orange);
         }
+        /*end of porject section*/
+/*-------------------------------------------------------------*/
+        /*Contact section*/
+        .contact_section {
+            padding: 100px 50px;
+            background-color: #ffffff;
+            max-width: 1200px;
+            margin: 0 auto;
+            color: var(--dark-bg);
+        }
 
+        .contact_container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-info h2 {
+            font-size: 3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark-bg);
+        }
+
+        /*interctive form styles*/
+        .form-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 1rem;
+            border: none;
+            border-bottom: 2px solid var(--input-gray);
+            background: transparent;
+            outline: none;
+            transition: border-color 0.3s;
+            color: var(--dark-bg);
+            font-style: normal; /*this overides the italic from the footer*/
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-bottom:2px solid var(--accent-blue);       
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            pointer-events: none;
+            transition: 0.3s ease all;
+            color: #999;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label,
+        .form-group textarea:focus ~ label,
+        .form-group textarea:not(:placeholder-shown) ~ label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-orange);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        /*end of contact section*/
+/*--------------------------------------------------------*/
         /* FOOTER CARDS */
         .footer-grid {
             display: flex;
@@ -268,10 +354,10 @@
             height: 110px;
             resize: none;
         }
+        /*end of footer section*/
     </style>
 </head>
 <body>
-
     <header>
         <div style="display: flex; align-items: center; gap: 20px;">
             <div class="logo-box">RG</div>
@@ -283,17 +369,17 @@
 
         <nav class="nav-pill">
             <ul>
-                <li><a href="about">About</a></li>
-                <li><a href="contact">Contact</a></li>
-                <li><a href="project">Projects</a></li>
-                <li><a href="resume">Resume</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#project">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <!--about section-->
-        <section class="about-section">
+        <section id="about" class="about-section">
             <div class="about-grid">
                 <div>
                     <h2 class="about-heading">Engineering Mindset</h2>
@@ -332,7 +418,7 @@
         </section>
         
         <!--projects section-->
-        <section class="projects-section">
+        <section id="project" class="projects-section">
             <h2 class="about-heading">Selected Works</h2>
             <div class="project-grid">
                 <!--project cards coppy if needed-->
@@ -377,12 +463,47 @@
             </div>
         </section>
 
-        <section id="contact">
-            <h1>Contact Me</h1>
-        </section>
-
-        <section id="resume">
+        <section id="resume" class="resume-section ">
             <h1>Resume</h1>
+        </section>
+        
+        <section id="contact" class="contact_section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Lets Connect</h2>
+                    <!--style this-->
+                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                        Have a technical inquery or a project proposal <br>
+                        Feel free to reach oout. I typically respond within 24 hours.
+                    </p>
+                    <!--style this-->
+                    <div style="margin-top: 40px;">
+                        <p><strong>Email:</strong> email goes here !!!!!!!!!</p>
+                        <p><strong>Location:</strong> Kraków, PL (Remote Available)</p>
+                    </div>
+                </div>
+
+                <!--form -->
+                <form id="portfolio-contact-form" action="" method="post">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder=" " required>
+                        <label>Full Name</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder=" " required>
+                        <label>Email Address</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea type="message" rows="4" placeholder=" " required></textarea>
+                        <label>Project Brief / Inquiry</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="send-button">Send Message</button>
+                </form>
+
+            </div>
         </section>
     </main>
 
@@ -396,17 +517,17 @@
             <section class="card">
                 <div class="card-label">Navigation</div>
                 <div class="card-links">
-                    <span>About</span>
-                    <span>Contact</span>
-                    <span>Projects</span>
-                    <span>Resume</span>
+                    <span style="cursor: pointer;" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">About</span>
+                    <span style="cursor: pointer;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact</span>
+                    <span style="cursor: pointer;" onclick="document.getElementById('project').scrollIntoView({behavior: 'smooth'})">Projects</span>
+                    <span style="cursor: pointer;" onclick="document.getElementById('resume').scrollIntoView({behavior: 'smooth'})">Resume</span>
                 </div>
             </section>
 
             <section class="card">
                 <div class="card-label">Technical Links</div>
                 <div class="card-links">
-                    <span><a href="https://github.com/MysterousRob">GitHub</a></span>
+                    <span><a href="https://github.com/MysterousRob" target="_blank" style="color: inherit; text-decoration: none;">GitHub</a></span>
                     <span>Project Documentation</span>
                     <span>System Architecture</span>
                 </div>
@@ -415,8 +536,8 @@
             <section class="card">
                 <div class="card-label">Lets Connect</div>
                 <div class="card-links">
-                    <span><a href="robertjohngasior@gmail.com">Email</a></span>
-                    <span><a href="https://www.linkedin.com/in/robert-gasior/">LinkedIn</a></span>
+                    <span><a href="mailto:robertjohngasior@gmail.com" style="color: inherit; text-decoration: none;">Email</a></span>
+                    <span><a href="https://www.linkedin.com/in/robert-gasior/" target="_blank" style="color: inherit; text-decoration: none;">LinkedIn</a></span>
                     <div style="font-size: 0.75rem; margin-top: 5px; opacity: 0.7;">Poland / GMT+2</div>
                 </div>
             </section>
@@ -428,32 +549,65 @@
                 © 2026 Robert Gasior
             </div>
 
-            <div class="form-container">
+            <form action="https://formspree.io/f/your-id" method="POST" class="form-container">
                 <div class="form-left">
                     <div class="name-row">
-                        <input type="text" placeholder="Name" style="width: 80px;">
-                        <input type="text" placeholder="LastName" style="width: 80px;">
+                        <input type="text" name="first_name" placeholder="Name" style="width: 80px;" required>
+                        <input type="text" name="last_name" placeholder="LastName" style="width: 80px;" required>
                     </div>
-                    <input type="email" placeholder="Email">
-                    <select>
-                        <option>reason of inquiry 1</option>
-                        <option>reason of inquiry 2</option>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <select name="reason">
+                        <option>General Inquiry</option>
+                        <option>Project Proposal</option>
                     </select>
                 </div>
-                <textarea placeholder="short description"></textarea>
-            </div>
-            <button>Submit</button>
+                <textarea name="message" placeholder="short description" required></textarea>
+                <button type="submit" class="submit-btn" style="padding: 10px 20px; align-self: flex-end;">Submit</button>
+            </form>
         </div>
     </footer>
 
     <script>
-        // EXAMPLE JS: Log when a card is clicked
+        // Log when a card is clicked
         document.querySelectorAll('.card').forEach(card => {
             card.onclick = function() {
                 console.log("Card " + this.querySelector('.card-label').innerText + " clicked!");
             };
         });
 
+        // Form submission feedback
+        const form = document.getElementById('portfolio-contact-form');
+        if(form) {
+            form.addEventListener('submit', function() {
+                const btn = document.getElementById('send-button');
+                btn.innerText = "SENDING...";
+                btn.style.backgroundColor = "#2980b9";
+            });
+        }
+
+        // Scroll animation trigger
+        window.addEventListener('scroll', () => {
+            const section = document.querySelector(".contact_section");
+            if(section) {
+                const sectionPos = section.getBoundingClientRect().top;
+                const screenPos = window.innerHeight / 1.3;
+                if (sectionPos < screenPos) {
+                    section.style.opacity = "1";
+                    section.style.transform = "translateY(0)";
+                }
+            }
+        });
+
+        // Smooth scroll for nav-pill links
+        document.querySelectorAll('.nav-pill a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
         // You can add your animation logic here
     </script>
 </body>
